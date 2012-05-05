@@ -38,7 +38,7 @@ for(int i=0; i<student.getDegrees().size(); i++) {
 %>
 
 
-<button> Submit Application</button> <Button>Cancel</button>
+<input type="button" onclick="window.location.href='submit.jsp'"> Submit Application</input> <Button>Cancel</button>
   </form>
   </div>
 </div>
