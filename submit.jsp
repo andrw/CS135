@@ -24,7 +24,7 @@
 
   conn.setAutoCommit(false);
 
-  pstmt = conn.prepareStatement("INSERT INTO gradstudents (first_name, middle_name, last_name, citizenship, residence, streetNumber, streetName, city, stateCode, zipcode, areaCode, phoneNumber) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+  pstmt = conn.prepareStatement("INSERT INTO gradstudents (first_name, middle_name, last_name, citizenship, residence, streetNumber, streetName, city, stateCode, zipcode, areaCode, phoneNumber) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) returning id");
   
   pstmt.setString(1, student.getFirstName());
   pstmt.setString(2, student.getMiddleName());
@@ -39,28 +39,26 @@
   pstmt.setString(11, student.getAddress().getAreaCode());
   pstmt.setString(12, student.getAddress().getPhoneNumber());
 
- int rowCount = pstmt.executeUpdate();
+rs = pstmt.executeQuery();
 
  // commit transaction
  conn.commit();
 
-
+rs.next();
+int count = rs.getInt(1);
 ArrayList<Degree> degrees = student.getDegrees();
-%>
-
-<%= degrees.size() %>
-
-<%
+ 
 
 for(int i=0; i<degrees.size(); i++) {
-  pstmt = conn.prepareStatement("INSERT INTO degrees ( loc, uni, discipline, month, year, gpa) VALUES (?, ?, ?, ?, ?, ?)");
+  pstmt = conn.prepareStatement("INSERT INTO degrees ( loc, uni, discipline, month, year, gpa, gradstudent) VALUES (?, ?, ?, ?, ?, ?, ?)");
 pstmt.setString(1, degrees.get(0).getLoc());
 pstmt.setString(2, degrees.get(0).getUni());
 pstmt.setString(3, degrees.get(0).getDiscipline());
 pstmt.setString(4, degrees.get(0).getMonth());
 pstmt.setString(5, degrees.get(0).getYear());
 pstmt.setString(6, degrees.get(0).getGPA());
-rowCount = pstmt.executeUpdate();
+pstmt.setInt(7, count);
+pstmt.executeUpdate();
  conn.commit();
 }
 
@@ -71,7 +69,7 @@ rowCount = pstmt.executeUpdate();
                 // Close the Connection
                 conn.close();
 
-            } catch (SQLException e) {
+              } catch (SQLException e) {
                 // Wrap the SQL exception in a runtime exception to propagate
                 // it upwards
                 throw new RuntimeException(e);
