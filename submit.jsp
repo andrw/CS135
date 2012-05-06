@@ -24,7 +24,7 @@
 
   conn.setAutoCommit(false);
 
-  pstmt = conn.prepareStatement("INSERT INTO gradstudents (first_name, middle_name, last_name, citizenship, residence, streetNumber, streetName, city, stateCode, zipcode, areaCode, phoneNumber) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) returning id");
+  pstmt = conn.prepareStatement("INSERT INTO gradstudents (first_name, middle_name, last_name, citizenship, residence, streetNumber, streetName, city, stateCode, zipcode, areaCode, phoneNumber, specialization) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) returning id");
   
   pstmt.setString(1, student.getFirstName());
   pstmt.setString(2, student.getMiddleName());
@@ -38,7 +38,7 @@
   pstmt.setString(10, student.getAddress().getZipcode());
   pstmt.setString(11, student.getAddress().getAreaCode());
   pstmt.setString(12, student.getAddress().getPhoneNumber());
-
+  pstmt.setString(13, student.getSpecialization());
 rs = pstmt.executeQuery();
 
  // commit transaction

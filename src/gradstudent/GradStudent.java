@@ -15,6 +15,7 @@ public class GradStudent {
   private int currentDegree;
   private String specialization;
 
+
   public GradStudent() {
     firstName = "";
     middleName = "";
@@ -121,7 +122,7 @@ public class GradStudent {
     this.specialization = specialization;
   }
 
-  public String getSpecializatino() {
+  public String getSpecialization() {
     return this.specialization;
   }
 

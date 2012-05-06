@@ -11,7 +11,7 @@
   // grab old info
   GradStudent student = (GradStudent) application.getAttribute("student");
 
-student.setSpecialization(request.getParameter("speciailization"));
+student.setSpecialization(request.getParameter("specialization"));
 
 // record new info
   application.setAttribute("student", student);
@@ -33,12 +33,14 @@ for(int i=0; i<student.getDegrees().size(); i++) {
   Degree # <%= i %> <br>
   Degree Location: <%= student.getDegrees().get(i).getLoc() %><Br>
   University: <%= student.getDegrees().get(i).getUni() %><br><br>
+  Specialization: <%= student.getSpecialization() %><br><br>
 <% 
 }
 %>
 
 
-<input type="button" onclick="window.location.href='submit.jsp'"> Submit Application</input> <Button>Cancel</button>
+<input type="button" onclick="window.location.href='submit.jsp'" value="Submit"></input>
+<input type="button" onclick="window.location.href='cancel.html'" value="Cancel"></input>
   </form>
   </div>
 </div>
