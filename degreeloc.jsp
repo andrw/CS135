@@ -1,4 +1,4 @@
-<%@page import="support.*, java.util.*, gradstudent.*" %>
+  <%@page import="support.*, java.util.*, gradstudent.*" %>
 <html>
 <head>
 <link rel="stylesheet" href="css/bootstrap.css" type="text/css">   
@@ -19,7 +19,7 @@ String action = request.getParameter("action");
 }
 else if(action.equals("anotherDegree")) {
   // SUBMIT/UPDATE STUDENT INFO WITH DEGREE
-  student.newDegree((String)application.getAttribute("loc"), (String)application.getAttribute("uni"), (String)application.getAttribute("major"), (String)application.getAttribute("month"), (String)application.getAttribute("year"), (String)application.getAttribute("gpa"));
+  student.newDegree((String)application.getAttribute("loc"), (String)application.getAttribute("uni"), (String)application.getAttribute("major"), (String)application.getAttribute("month"), (String)application.getAttribute("year"), (String)application.getAttribute("gpa"), (String)application.getAttribute("title"));
 }
 else {
   out.println("what the heck.");  

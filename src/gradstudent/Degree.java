@@ -8,6 +8,7 @@ public class Degree {
   private String month;
   private String year;
   private String gpa;
+  private String title;
 
   public Degree() {
     loc ="";
@@ -16,6 +17,7 @@ public class Degree {
     month="";
     year="";
     gpa="";
+    title="";
   }
 
 // constructor for residents in foreign countries
@@ -24,13 +26,15 @@ public class Degree {
    String discipline,
    String month,
    String year,
-   String gpa) {
+   String gpa,
+   String title) {
     this.loc=loc;
     this.uni=uni;
     this.discipline=discipline;
     this.month=month;
     this.year=year;
     this.gpa=gpa;
+    this.title=title;
   }
 
   public String getLoc() { 
@@ -55,6 +59,10 @@ public class Degree {
 
   public String getGPA() { 
     return this.gpa; 
+  }
+
+  public String getTitle() {
+    return this.title;
   }
 
 }

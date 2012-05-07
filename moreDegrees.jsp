@@ -17,6 +17,7 @@ application.setAttribute("major", request.getParameter("major"));
 application.setAttribute("gpa", request.getParameter("gpa"));
 application.setAttribute("month", request.getParameter("month"));
 application.setAttribute("year", request.getParameter("year"));
+application.setAttribute("title", request.getParameter("title"));
 
   %>
 

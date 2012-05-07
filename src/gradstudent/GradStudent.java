@@ -104,8 +104,9 @@ public class GradStudent {
    String discipline,
    String month,
    String year,
-   String gpa) {
-    Degree newDeg = new Degree( loc, uni, discipline, month, year, gpa);
+   String gpa,
+   String title) {
+    Degree newDeg = new Degree( loc, uni, discipline, month, year, gpa, title);
     //currentDegree++;
     degrees.add(newDeg);
   }

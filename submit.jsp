@@ -2,6 +2,7 @@
 <body>
   <%
   GradStudent student = (GradStudent) application.getAttribute("student");
+
 %>
 <%-- open connection --%>
 <%@ page import="java.sql.*, support.*, java.util.*, gradstudent.*" %>
@@ -51,12 +52,12 @@ ArrayList<Degree> degrees = student.getDegrees();
 
 for(int i=0; i<degrees.size(); i++) {
   pstmt = conn.prepareStatement("INSERT INTO degrees ( loc, uni, discipline, month, year, gpa, gradstudent) VALUES (?, ?, ?, ?, ?, ?, ?)");
-pstmt.setString(1, degrees.get(0).getLoc());
-pstmt.setString(2, degrees.get(0).getUni());
-pstmt.setString(3, degrees.get(0).getDiscipline());
-pstmt.setString(4, degrees.get(0).getMonth());
-pstmt.setString(5, degrees.get(0).getYear());
-pstmt.setString(6, degrees.get(0).getGPA());
+pstmt.setString(1, degrees.get(i).getLoc());
+pstmt.setString(2, degrees.get(i).getUni());
+pstmt.setString(3, degrees.get(i).getDiscipline());
+pstmt.setString(4, degrees.get(i).getMonth());
+pstmt.setString(5, degrees.get(i).getYear());
+pstmt.setString(6, degrees.get(i).getGPA());
 pstmt.setInt(7, count);
 pstmt.executeUpdate();
  conn.commit();

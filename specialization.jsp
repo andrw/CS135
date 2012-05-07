@@ -12,7 +12,7 @@
   GradStudent student = (GradStudent) application.getAttribute("student");
 
   // SUBMIT/UPDATE STUDENT INFO WITH DEGREE
-  student.newDegree((String)application.getAttribute("loc"), (String)application.getAttribute("uni"), (String)application.getAttribute("major"), (String)application.getAttribute("month"), (String)application.getAttribute("year"), (String)application.getAttribute("gpa"));
+  student.newDegree((String)application.getAttribute("loc"), (String)application.getAttribute("uni"), (String)application.getAttribute("major"), (String)application.getAttribute("month"), (String)application.getAttribute("year"), (String)application.getAttribute("gpa"), (String)application.getAttribute("title"));
 // record new info
   application.setAttribute("student", student);
   %>
@@ -33,6 +33,7 @@ for(int i=0; i<student.getDegrees().size(); i++) {
   Degree # <%= i %> <br>
   Degree Location: <%= student.getDegrees().get(i).getLoc() %><Br>
   University: <%= student.getDegrees().get(i).getUni() %><br><br>
+  Discipline: <%= student.getDegrees().get(i).getDiscipline() %> <br>
 <% 
 }
 %>

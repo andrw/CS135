@@ -44,6 +44,7 @@ Your chosen university: <%= application.getAttribute("uni") %><br>
 GPA: <input value="" name="gpa"></input><br>
 Month: <input value="" name="month"></input><br>
 Year: <input value="" name="year"></input><br>
+Title of Degree: <input value="" name="degreeTitle"></input><br>
 <input type="submit" value="submit">
 </form>
 
