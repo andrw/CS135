@@ -62,7 +62,9 @@ pstmt.setInt(7, count);
 pstmt.executeUpdate();
  conn.commit();
 }
-
+%>
+Your application ID is: <%= count %>
+<%
 
  conn.setAutoCommit(true);
 
