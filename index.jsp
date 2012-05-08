@@ -1,41 +1,29 @@
-<h1><%@page import="java.util.*, gradstudent.*" %>
-</h1>
-<% if(application.getAttribute("students") == null) {
-ArrayList students = new ArrayList();
-application.setAttribute("students", students);
-}
-%>
-
+<!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="css/bootstrap.css" type="text/css">    
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css">    
+    <link rel="stylesheet" href="css/bootstrap-responsive.css" type="text/css">    
 </head>
 <body>
+<section>
     <div class="container" style="margin-top:20px">
-    <div class="row-fluid">
-        <h1><div class="span12">
-            <h1>Graduate Student Application Form</h1></h1>
-            <br>
-    <form action="citizenship.jsp" method="POST">
-    <table>
-        <tr>
-            <td>First Name</td>
-            <td><input value="" name="firstName" size="10"/></td>
-        </tr>
-        <tr>
-            <td>Middle Name</td>
-            <td><input value="" name="middleName" size="10"/></td>
-        </tr>
-        <tr>
-            <td>Last Name</td>
-            <td><input value="" name="lastName" size="10"/></td>
-        </tr>
-    </table>
-    <Br>
-    <input type="submit" value="Submit" />
-</form>
-</div>
-</div>
-</div>
+    <div class="row">
+    <div class="span6">
+            <h1>Graduate Student Application Form</h1>
+            <p></p>
+    <form action="citizenship.jsp" method="POST" class="well">
+        <label>First Name</label>
+        <input type="text" class="span2" name="firstName"/>
+        <label>Middle Initial</label>
+        <input value="" name="middleInitial" class="span1" maxlength=1 />
+        <label>Last Name</label>
+        <input value="" name="lastName" class="span2"/>
+        <br>
+        <input type="submit" value="Submit" />
+    </form>
+    </div>
+    </div>
+    </div>
+</section>
 </body>
 </html>
