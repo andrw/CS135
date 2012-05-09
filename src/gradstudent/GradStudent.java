@@ -5,31 +5,29 @@ import java.util.*;
 
 public class GradStudent {
   private String firstName;
-  private String middleName;
+  private String middleInitial;
   private String lastName;
-  private String citizenship;
-  private String residence;
+  private int citizenship;
+  private int residence;
   private Address address;
   private boolean foreign;
-  private ArrayList<Degree> degrees;
+  private Vector<Degree> degrees;
   private int currentDegree;
-  private String specialization;
+  private int specialization;
+  private int studId;
 
-
-  public GradStudent() {
-    firstName = "";
-    middleName = "";
-    lastName = "";
-  }
 
   /* student constructor with parameters */
-  public GradStudent( String firstName, String middleName, String lastName) {
-    super();
+  public GradStudent(String firstName, String middleInitial, String lastName) {
     this.firstName = firstName;
-    this.middleName = middleName;
+    this.middleInitial = middleInitial;
     this.lastName = lastName;
-    degrees = new ArrayList<Degree>();
+    degrees = new Vector<Degree>();
     currentDegree = 0;
+    citizenship = 0;
+    residence = 0;
+    specialization = 0;
+    studId = -1;
   }
 
   public String getFirstName() {
@@ -40,12 +38,12 @@ public class GradStudent {
     this.firstName = firstName;
   }
 
-  public String getMiddleName() {
-    return middleName;
+  public String getMiddleInitial() {
+    return middleInitial;
   }
 
-  public void setMiddleName(String middleName) {
-    this.middleName = middleName;
+  public void setMiddleInitial(String middleInitial) {
+    this.middleInitial = middleInitial;
   }
 
   public String getLastName() {
@@ -56,35 +54,24 @@ public class GradStudent {
     this.lastName = lastName;
   }
 
-  public void setCitizenship(String citizenship) {
+  public void setCitizenship(int citizenship) {
     this.citizenship = citizenship;
   }
 
-  public String getCitizenship() {
+  public int getCitizenship() {
     return this.citizenship;
   }
 
-  public void setResidence(String residence) {
+  public void setResidence(int residence) {
     this.residence = residence;
   }
 
-  public String getResidence() {
+  public int getResidence() {
     return this.residence;
   }
 
-  public void setAddress(String streetNumber,
-   String streetName,
-   String city,
-   String stateCode,
-   String zipcode,
-   String areaCode,
-   String phoneNumber) {
-    address = new Address( streetNumber,
-      streetName,
-      city, stateCode,
-      zipcode,
-      areaCode,
-      phoneNumber);
+  public void setAddress(Address address) {
+    this.address = address;
   }
 
   public Address getAddress() {
@@ -99,32 +86,32 @@ public class GradStudent {
     return this.foreign;
   }
 
-  public void newDegree(String loc,
-   String uni,
-   String discipline,
-   String month,
-   String year,
-   String gpa,
-   String title) {
-    Degree newDeg = new Degree( loc, uni, discipline, month, year, gpa, title);
-    //currentDegree++;
+  public void newDegree(Degree newDeg) {
     degrees.add(newDeg);
   }
 
-  public ArrayList<Degree> getDegrees() {
+  public Vector<Degree> getDegrees() {
     return this.degrees;
   }
 
-  public int getCurrentDegree() {
-    return this.currentDegree;
+  public Degree getLastDegree() {
+    return this.degrees.lastElement();
   }
 
-  public void setSpecialization(String specialization) {
+  public void setSpecialization(int specialization) {
     this.specialization = specialization;
   }
 
-  public String getSpecialization() {
+  public int getSpecialization() {
     return this.specialization;
+  }
+
+  public int getStudId() {
+    return this.studId;
+  }
+
+  public void setStudId(int studId) {
+    this.studId = studId;
   }
 
 }

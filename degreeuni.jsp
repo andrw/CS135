@@ -1,58 +1,87 @@
+<!DOCTYPE html>
 <%@page import="support.*, java.util.*, gradstudent.*" %>
 <html>
 <head>
-<link rel="stylesheet" href="css/bootstrap.css" type="text/css">    
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css">    
+    <link rel="stylesheet" href="css/bootstrap-responsive.css" type="text/css">    
 </head>
 <body>
-      <div class="container" style="margin-top:20px">
-    <div class="row-fluid">
-        <div class="span12">
-  <% 
-  // grab old info
-  GradStudent student = (GradStudent) application.getAttribute("student");
+<section>
+    <div class="container" style="margin-top:20px">
 
-// set new info  
-// record new info
-application.setAttribute("loc", request.getParameter("loc"));
+<% 
+GradStudent student = (GradStudent)session.getAttribute("student");
+int loc = -1;
+try {
+    loc = Integer.parseInt((String)(request.getParameter("loc")));
+}
+catch (NumberFormatException e) { }
+Degree curDegree = null;
 
-  %>
+if (loc == -1 && student != null) {
+    try {
+        curDegree = student.getLastDegree();
+        loc = curDegree.getLoc();
+    }
+    catch (NoSuchElementException e) { }
+}
 
-  <%-- display old info --%>
-  <h1>Welcome <%= student.getFirstName() %> <%= student.getLastName() %>!<br></h1>
-  citizenship: <%= student.getCitizenship() %><br>
-  residence: <%= student.getResidence() %><br>
-  address: <%= student.getAddress().getStreetNumber() %> <%= student.getAddress().getStreetName() %> <Br>
-  <%= student.getAddress().getCity() %>, <%= student.getAddress().getZipcode() %><br>
-  (<%= student.getAddress().getAreaCode() %>) <%= student.getAddress().getPhoneNumber() %><br>
-Your chosen location: <%= application.getAttribute("loc") %><Br>
+if (student == null || loc == -1 || student.getAddress() == null)
+ { %>
+<p><strong>An error occured.</strong>You should consider restarting your application procedure. <a href="./">Restart now.</a></p>
+<% 
+}
+else {
+if (curDegree == null) {
+    curDegree = new Degree();
+    curDegree.setLoc(loc);
+    student.newDegree(curDegree);
+}
+Countries c = new Countries();
+Universities univ = new Universities();   
+Vector univByState = univ.getUnivByState(loc);
+%>
 
-  <%-- gather new info --%>
-  <%
-  support s = new support();   
-  Vector universities = s.getUniversities(config.getServletContext().getRealPath("universities.txt"));
-  %>
-
-
+    <div class="row">
+    <div class="span6">
+    <p>Choose the university where you got your degree. If you don't find it in the list, add it with the form below.</p>
+    <form action="degreeDiscipline.jsp" method="POST" class="well form-inline">
+        <input type="text" name="addUni" class="span3" placeholder="Your university here">
+        <button type="submit" class="btn">Add</button>
+    </form>
+    <table class="table table-bordered">
+      <tr>
     <%
-    for (int i=0; i<universities.size(); i++){
-      //each entry in the universities vector is a tuple with the first entry being the country/state
-      //and the second entry being a vector of the universities as String's
-      Vector tuple = (Vector)universities.get(i);
-      String state = (String)tuple.get(0);
-      if(state.equals(application.getAttribute("loc"))) 
-      {
-      // does this if location = selected location
-      Vector u = (Vector)tuple.get(1);
-      for(int j=0; j<u.size(); j++){ 
-      %>
-      <a href="degreeDiscipline.jsp?uni=<%= u.get(j)%>"><%= u.get(j) %></a><br>
-    <%}
-    }
-     
-    }
-  %>
-</div>
-</div>
-</div>
-  </body>
-  </html>
+    for (int i = 0; i < univByState.size(); i++){
+    if (i % 3 == 0 && i != 0) { %>
+        </tr><tr>
+    <% } %>
+    <td>
+        <a href="degreeDiscipline.jsp?uni=<%= ((Vector)univByState.get(i)).get(0) %>">
+        <%= ((Vector)univByState.get(i)).get(1) %>
+        </a>
+    </td>
+    <% } %>
+    </table>
+    </div>
+    <div class="span3">
+    <h3> Your informations </h3>
+    <p></p>
+    <p>Name: <%= student.getFirstName() %>  <%= student.getMiddleInitial() %> <%= student.getLastName() %></p>
+    <p>Citizen of: <%= c.getCountry(student.getCitizenship()) %></p>
+    <p>Resident of: <%= c.getCountry(student.getResidence()) %></p>
+    <address>
+    <strong>Address</strong>
+    <br/>
+     <%= student.getAddress().getStreet() %><br/>
+    <%= student.getAddress().getCity() %>, <%= student.getAddress().getStateCode() %> <%= student.getAddress().getZipcode() %><br/>
+    <%= student.getAddress().getCountryCode() %> (<%= student.getAddress().getAreaCode() %>) <%= student.getAddress().getPhoneNumber() %><br>
+    </address>
+    <p>You obtained your last degree in : <%= univ.getUnivState(loc) %></p>
+    </div>
+    </div>
+<% } %>
+    </div>
+</section>
+</body>
+</html>

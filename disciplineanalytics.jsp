@@ -20,21 +20,21 @@ try {
     initCtx = new InitialContext();
     ds = (DataSource)initCtx.lookup("java:comp/env/jdbc/ClassesDBPool");
     conn = ds.getConnection();
-    pstmt = conn.prepareStatement("SELECT specializations.s_id, COUNT(students.specialization) FROM specializations LEFT JOIN students ON students.specialization = specializations.s_id GROUP BY specializations.s_id ORDER BY specializations.s_id");
+    pstmt = conn.prepareStatement("SELECT majors.m_id, COUNT(degrees.major) FROM majors LEFT JOIN degrees ON degrees.major = majors.m_id GROUP BY majors.m_id ORDER BY majors.m_id");
     rs = pstmt.executeQuery();
 
-    Specializations spec = new Specializations();
+    Majors spec = new Majors();
 %>
 <div class="span7">
 <table class="table table-bordered">
     <thead>
-        <tr><th>Specialization</th><th>Applicants</th></tr>
+        <tr><th>Discipline</th><th>Applicants</th></tr>
     </thead>
     <tbody>
     <% while(rs.next()) { %>
     <tr>
-        <td><%= spec.getSpecialization(rs.getInt(1)) %></td>
-        <td><a href="applications.jsp?specialization=<%= rs.getString(1) %>">
+        <td><%= spec.getMajor(rs.getInt(1)) %></td>
+        <td><a href="applications.jsp?major=<%= rs.getString(1) %>">
             <%= rs.getString(2) %>
         </a></td>
     </tr>

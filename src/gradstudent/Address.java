@@ -5,56 +5,36 @@ import java.util.*;
 
 public class Address {
 // best to keep as strings and convert to int when necessary.
-  private String streetNumber;
-  private String streetName;
+  private String street;
   private String city;
   private String stateCode;
   private String zipcode;
+  private String countryCode;
   private String areaCode;
   private String phoneNumber;
 
-  public Address() {
-   streetNumber="";
-   streetName="";
-   city="";
-   stateCode="";
-   zipcode="";
-   areaCode="";
-   phoneNumber="";
- }
-
-// constructor for residents in foreign countries
- public Address(String streetNumber,
-   String streetName,
+ public Address(String street,
    String city,
    String stateCode,
    String zipcode,
+   String countryCode,
    String areaCode,
    String phoneNumber) {
-   this.streetNumber= streetNumber;
-   this.streetName = streetName;
+   this.street = street;
    this.city = city;
    this.stateCode = stateCode;
-   this.zipcode=zipcode;
+   this.zipcode = zipcode;
+   this.countryCode = countryCode;
    this.areaCode = areaCode;
    this.phoneNumber = phoneNumber;
  }
 
- public void setStreetNumber(String streetNumber) {
-  this.streetNumber = streetNumber;
+public void setStreet(String street) {
+  this.street = street;
 }
 
-public String getStreetNumber() { 
-  return this.streetNumber; 
-}
-
-
-public void setStreetName(String streetName) {
-  this.streetName = streetName;
-}
-
-public String getStreetName() { 
-  return this.streetName; 
+public String getStreet() { 
+  return this.street; 
 }
 
 
@@ -80,6 +60,14 @@ public void setZipcode(String zipcode) {
 
 public String getZipcode() { 
   return this.zipcode; 
+}
+
+public void setCountryCode(String countryCode) {
+  this.countryCode = countryCode;
+}
+
+public String getCountryCode() { 
+  return this.countryCode; 
 }
 
 

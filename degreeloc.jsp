@@ -1,71 +1,82 @@
-  <%@page import="support.*, java.util.*, gradstudent.*" %>
+<!DOCTYPE html>
+<%@page import="support.*, java.util.*, gradstudent.*" %>
 <html>
 <head>
-<link rel="stylesheet" href="css/bootstrap.css" type="text/css">   
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css">    
+    <link rel="stylesheet" href="css/bootstrap-responsive.css" type="text/css">    
 </head>
-    <div class="container" style="margin-top:20px">
-    <div class="row-fluid">
-        <div class="span12">
 <body>
-  <% 
-  // grab old info
-  GradStudent student = (GradStudent) application.getAttribute("student");
+<section>
+    <div class="container" style="margin-top:20px">
 
+<% 
+GradStudent student = (GradStudent)session.getAttribute("student");
 String action = request.getParameter("action");
-
-// set new info
-  if(action.equals("address")) {
-  student.setAddress(request.getParameter("streetNumber"), request.getParameter("streetName"), request.getParameter("city"), request.getParameter("stateCode"), request.getParameter("zipcode"), request.getParameter("areaCode"), request.getParameter("phoneNumber"));
+Address address = null;
+if (student != null) {
+    address = student.getAddress();
+    if (action != null && action.equals("address")) {
+        String streetName = request.getParameter("streetName");
+        String city = request.getParameter("city");
+        String stateCode = request.getParameter("stateCode");
+        if (stateCode == null)
+            stateCode = "";
+        String countryCode = request.getParameter("countryCode");
+        if (countryCode == null)
+            countryCode = "001";
+        String zipcode = request.getParameter("zipcode");
+        String areaCode = request.getParameter("areaCode");
+        String phoneNumber = request.getParameter("phoneNumber");
+    
+        if (streetName != null && city != null && zipcode != null && phoneNumber != null) {
+            address = new Address(streetName, city, stateCode, zipcode, countryCode , areaCode, phoneNumber);
+        }
+    }
 }
-else if(action.equals("anotherDegree")) {
-  // SUBMIT/UPDATE STUDENT INFO WITH DEGREE
-  student.newDegree((String)application.getAttribute("loc"), (String)application.getAttribute("uni"), (String)application.getAttribute("major"), (String)application.getAttribute("month"), (String)application.getAttribute("year"), (String)application.getAttribute("gpa"), (String)application.getAttribute("title"));
+
+if (student == null || address == null)// || action != "anotherDegree")
+ { %>
+<p><strong>An error occured.</strong>You should consider restarting your application procedure. <a href="./">Restart now.</a></p>
+<% 
 }
 else {
-  out.println("what the heck.");  
+if (action != null && action.equals("address")) {
+  student.setAddress(address);
 }
-// record new info
-  application.setAttribute("student", student);
-  %>
-
-<%-- display old info --%>
-<h1>Welcome <%= student.getFirstName() %> <%= student.getLastName() %>!<br></h1>
-citizenship: <%= student.getCitizenship() %><br>
-residence: <%= student.getResidence() %><br>
-address: <%= student.getAddress().getStreetNumber() %> <%= student.getAddress().getStreetName() %> <Br>
-<%= student.getAddress().getCity() %>, <%= student.getAddress().getStateCode() %> <%= student.getAddress().getZipcode() %><br>
-(<%= student.getAddress().getAreaCode() %>) <%= student.getAddress().getPhoneNumber() %><br>
-
-<%-- gather new info --%>
-<%
-support s = new support();   
-Vector universities = s.getUniversities(config.getServletContext().getRealPath("universities.txt"));
+Countries c = new Countries();
+Universities univ = new Universities();   
 %>
-
-<table border =1>
-  <tr>
+    <div class="row">
+    <div class="span6">
+    <p>Choose the location where you got your degree.</p>
+    <table class="table table-bordered">
+      <tr>
     <%
-    for (int i=0; i<universities.size(); i++){
-      //each entry in the universities vector is a tuple with the first entry being the country/state
-      //and the second entry being a vector of the universities as String's
-      Vector tuple = (Vector)universities.get(i);
-      String state = (String)tuple.get(0);
-      if(i%3 == 0 && 3!=0) {
-      out.println("</tr><tr>");
-    }
-
-    %>
-
-    <td><a href="degreeuni.jsp?loc=<%= state %>"><%= state %></td>
-
-    <%
-
-      //out.println("<br>"+state+"<br>");    
-    }
-    
-    %>
+    for (int i = 0; i < univ.getUnivStatesNb(); i++){
+    if (i % 3 == 0 && i != 0) { %>
+        </tr><tr>
+    <% } %>
+    <td><a href="degreeuni.jsp?loc=<%= i %>"><%= univ.getUnivState(i) %></a></td>
+    <% } %>
+    </table>
     </div>
-</div>
-</div>
-  </body>
-  </html>
+    <div class="span3">
+    <h3> Your informations </h3>
+    <p></p>
+    <p>Name: <%= student.getFirstName() %>  <%= student.getMiddleInitial() %> <%= student.getLastName() %></p>
+    <p>Citizen of: <%= c.getCountry(student.getCitizenship()) %></p>
+    <p>Resident of: <%= c.getCountry(student.getResidence()) %></p>
+    <address>
+    <strong>Address</strong>
+    <br/>
+     <%= address.getStreet() %><br/>
+    <%= address.getCity() %>, <%= address.getStateCode() %> <%= address.getZipcode() %><br/>
+    <%= address.getCountryCode() %> (<%= address.getAreaCode() %>) <%= address.getPhoneNumber() %><br>
+    </address>
+    </div>
+    </div>
+<% } %>
+    </div>
+</section>
+</body>
+</html>

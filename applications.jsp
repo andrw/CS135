@@ -16,27 +16,46 @@ Connection conn = null;
 PreparedStatement pstmt = null;
 ResultSet rs = null;
 
+int specialization = 0;
+try {
+    specialization = Integer.parseInt((String)(request.getParameter("specialization")));
+}
+catch (NumberFormatException e) { }
+
+int major = 0;
+try {
+    major = Integer.parseInt((String)(request.getParameter("major")));
+}
+catch (NumberFormatException e) { }
+
+
 try {
     initCtx = new InitialContext();
     ds = (DataSource)initCtx.lookup("java:comp/env/jdbc/ClassesDBPool");
     conn = ds.getConnection();
-    pstmt = conn.prepareStatement("SELECT specializations.s_id, COUNT(students.specialization) FROM specializations LEFT JOIN students ON students.specialization = specializations.s_id GROUP BY specializations.s_id ORDER BY specializations.s_id");
+    if (specialization != 0) {
+        pstmt = conn.prepareStatement("SELECT first_name, last_name FROM students WHERE specialization=?");
+        pstmt.setInt(1, specialization);
+    }
+    else if (major != 0) {
+        pstmt = conn.prepareStatement("SELECT students.first_name, students.last_name FROM students JOIN degrees ON students.s_id = degrees.student WHERE degrees.major=? GROUP BY students.first_name, students.last_name");
+        pstmt.setInt(1, major);
+    }
+    else {
+        pstmt = conn.prepareStatement("SELECT first_name, last_name FROM students");
+    }
     rs = pstmt.executeQuery();
-
-    Specializations spec = new Specializations();
 %>
 <div class="span7">
 <table class="table table-bordered">
     <thead>
-        <tr><th>Specialization</th><th>Applicants</th></tr>
+        <tr><th>Firstname</th><th>Lastname</th></tr>
     </thead>
     <tbody>
     <% while(rs.next()) { %>
     <tr>
-        <td><%= spec.getSpecialization(rs.getInt(1)) %></td>
-        <td><a href="applications.jsp?specialization=<%= rs.getString(1) %>">
-            <%= rs.getString(2) %>
-        </a></td>
+        <td><%= rs.getString(1) %></td>
+        <td> <%= rs.getString(2) %> </td>
     </tr>
     <% } %>
     </tbody>
