@@ -1,4 +1,4 @@
-INSERT INTO universities (country_state, university) values ('Alabama','Air University');
+﻿INSERT INTO universities (country_state, university) values ('Alabama','Air University');
 INSERT INTO universities (country_state, university) values ('Alabama','Alabama A&M University');
 INSERT INTO universities (country_state, university) values ('Alabama','Alabama State University');
 INSERT INTO universities (country_state, university) values ('Alabama','Athens State University');
@@ -485,8 +485,6 @@ INSERT INTO universities (country_state, university) values ('Indiana','Indiana 
 INSERT INTO universities (country_state, university) values ('Indiana','Indiana University-South Bend');
 INSERT INTO universities (country_state, university) values ('Indiana','Indiana University-Southeast');
 INSERT INTO universities (country_state, university) values ('Indiana','Indiana University/Purdue University at Columbus');
-INSERT INTO universities (country_state, university) values ('Indiana','Indiana University/Purdue University at Fort Wayne');
-INSERT INTO universities (country_state, university) values ('Indiana','Indiana University/Purdue University at Indianapolis');
 INSERT INTO universities (country_state, university) values ('Indiana','Indiana Wesleyan University, Marion');
 INSERT INTO universities (country_state, university) values ('Indiana','Manchester College');
 INSERT INTO universities (country_state, university) values ('Indiana','Marian College');
@@ -495,7 +493,6 @@ INSERT INTO universities (country_state, university) values ('Indiana','Oakland 
 INSERT INTO universities (country_state, university) values ('Indiana','Purdue University');
 INSERT INTO universities (country_state, university) values ('Indiana','Purdue University Calumet');
 INSERT INTO universities (country_state, university) values ('Indiana','Purdue University North Central');
-INSERT INTO universities (country_state, university) values ('Indiana','Indiana University/Purdue University at Columbus');
 INSERT INTO universities (country_state, university) values ('Indiana','Indiana University/Purdue University at Fort Wayne');
 INSERT INTO universities (country_state, university) values ('Indiana','Indiana University/Purdue University at Indianapolis');
 INSERT INTO universities (country_state, university) values ('Indiana','Purdue University-School of Technology at Anderson/Muncie');
@@ -2136,7 +2133,6 @@ INSERT INTO universities (country_state, university) values ('China','Beijing Ag
 INSERT INTO universities (country_state, university) values ('China','Beijing Institute of Technology');
 INSERT INTO universities (country_state, university) values ('China','Beijing Polytechnic University');
 INSERT INTO universities (country_state, university) values ('China','Beijing University of Aeronautics & Astronautics');
-INSERT INTO universities (country_state, university) values ('China','Beijing University of Aeronautics & Astronautics');
 INSERT INTO universities (country_state, university) values ('China','Beijing University of Chemical Technology');
 INSERT INTO universities (country_state, university) values ('China','Beijing University of Posts and Telecommunications');
 INSERT INTO universities (country_state, university) values ('China','Central University for Nationalities');
@@ -2149,7 +2145,6 @@ INSERT INTO universities (country_state, university) values ('China','Hangzhou U
 INSERT INTO universities (country_state, university) values ('China','Harbin Engineering University');
 INSERT INTO universities (country_state, university) values ('China','Harbin Institute of Technology');
 INSERT INTO universities (country_state, university) values ('China','Hohai University');
-INSERT INTO universities (country_state, university) values ('China','Huazhong University of Science & Technology');
 INSERT INTO universities (country_state, university) values ('China','Huazhong University of Science & Technology');
 INSERT INTO universities (country_state, university) values ('China','Hunan Agricultural University');
 INSERT INTO universities (country_state, university) values ('China','Jilin University');
@@ -2202,7 +2197,6 @@ INSERT INTO universities (country_state, university) values ('Colombia','Univers
 INSERT INTO universities (country_state, university) values ('Colombia','Universidad de Los Andes');
 INSERT INTO universities (country_state, university) values ('Colombia','Universidad del Norte');
 INSERT INTO universities (country_state, university) values ('Colombia','Universidad del Valle');
-INSERT INTO universities (country_state, university) values ('Costa Rica','Escuela de Agricultura de la Región Tropical Húmeda (EARTH)');
 INSERT INTO universities (country_state, university) values ('Costa Rica','Escuela de Agricultura de la Región Tropical Húmeda (EARTH)');
 INSERT INTO universities (country_state, university) values ('Costa Rica','Instituto Centroamericano de Adminstración de Empresas');
 INSERT INTO universities (country_state, university) values ('Costa Rica','Instituto Tecnologico de Costa Rica');
@@ -2439,7 +2433,6 @@ INSERT INTO universities (country_state, university) values ('Germany','Universi
 INSERT INTO universities (country_state, university) values ('Germany','Universität Lüneburg');
 INSERT INTO universities (country_state, university) values ('Germany','Universität Leipzig');
 INSERT INTO universities (country_state, university) values ('Germany','Universität Mannheim');
-INSERT INTO universities (country_state, university) values ('Germany','Universität Osnabrück');
 INSERT INTO universities (country_state, university) values ('Germany','Universität Osnabrück');
 INSERT INTO universities (country_state, university) values ('Germany','Universität Passau');
 INSERT INTO universities (country_state, university) values ('Germany','Universität Potsdam');
@@ -2869,7 +2862,6 @@ INSERT INTO universities (country_state, university) values ('Mexico','Instituto
 INSERT INTO universities (country_state, university) values ('Mexico','Instituto Tecnológico y de Estudios Superiores de Monterrey Campus Ciudad de México');
 INSERT INTO universities (country_state, university) values ('Mexico','Instituto Tecnologico y de Estudios Superiores de Monterrey');
 INSERT INTO universities (country_state, university) values ('Mexico','Instituto Tecnologico y de Estudios Superiores de Monterrey, Campus Chihuahua');
-INSERT INTO universities (country_state, university) values ('Mexico','Instituto Tecnologico y de Estudios Superiores de Monterrey, Campus Chihuahua');
 INSERT INTO universities (country_state, university) values ('Mexico','Instituto Tecnologico y de Estudios Superiores de Monterrey, Campus Guaymas');
 INSERT INTO universities (country_state, university) values ('Mexico','Instituto Tecnologico y de Estudios Superiores de Monterrey, Campus Sonora Norte');
 INSERT INTO universities (country_state, university) values ('Mexico','Instituto Tecnologico y de Estudios Superiores de Occidente');
@@ -3152,7 +3144,6 @@ INSERT INTO universities (country_state, university) values ('Spain','Escuela Un
 INSERT INTO universities (country_state, university) values ('Spain','Institut Universitari de l''Audiovisual');
 INSERT INTO universities (country_state, university) values ('Spain','Instituto de Ciencias de la Educación');
 INSERT INTO universities (country_state, university) values ('Spain','Universidad Autónoma de Madrid');
-INSERT INTO universities (country_state, university) values ('Spain','Universidad Complutense de Madrid');
 INSERT INTO universities (country_state, university) values ('Spain','Universidad Complutense de Madrid');
 INSERT INTO universities (country_state, university) values ('Spain','Universidad Nacional de Educación a Distancia');
 INSERT INTO universities (country_state, university) values ('Spain','Universidad Pública de Navarra');
@@ -3488,3 +3479,4 @@ INSERT INTO universities (country_state, university) values ('Venezuela','Univer
 INSERT INTO universities (country_state, university) values ('Virgin Islands','University of the Virgin Islands');
 INSERT INTO universities (country_state, university) values ('Yugoslavia','Univerzitet u Beogradu');
 INSERT INTO universities (country_state, university) values ('Zambia','University of Zambia');
+
