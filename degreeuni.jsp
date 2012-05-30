@@ -3,7 +3,24 @@
 <html>
 <head>
     <link rel="stylesheet" href="css/bootstrap.css" type="text/css">    
-    <link rel="stylesheet" href="css/bootstrap-responsive.css" type="text/css">    
+    <link rel="stylesheet" href="css/bootstrap-responsive.css" type="text/css">
+       <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+   <script>
+      function validate() {
+      var uniName = $('#uniName').val();
+//      alert(uniName);
+        $.ajax({
+          type: 'POST',
+          url: "checkuni.jsp?uniName="+uniName,
+          success:function(result) {
+          alert(result);
+          }
+
+
+        });
+        
+      }
+    </script>
 </head>
 <body>
 <section>
@@ -32,6 +49,7 @@ if (student == null || loc == -1 || student.getAddress() == null)
 <% 
 }
 else {
+
 if (curDegree == null) {
     curDegree = new Degree();
     curDegree.setLoc(loc);
@@ -46,9 +64,15 @@ Vector univByState = univ.getUnivByState(loc);
     <div class="span6">
     <p>Choose the university where you got your degree. If you don't find it in the list, add it with the form below.</p>
     <form action="degreeDiscipline.jsp" method="POST" class="well form-inline">
-        <input type="text" name="addUni" class="span3" placeholder="Your university here">
-        <button type="submit" class="btn">Add</button>
+        <input type="text" id="uniName" name="addUni" class="span3" placeholder="Your university here">
+
+
+<!-- old button -->
+<!-- <button type="submit" class="btn">Add</button> -->
     </form>
+<!-- new button -->
+<button onclick="validate()">Add</button>
+
     <table class="table table-bordered">
       <tr>
     <%

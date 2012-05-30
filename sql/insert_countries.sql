@@ -1,4 +1,4 @@
-INSERT INTO countries (country) values ('Afghanistan');
+﻿INSERT INTO countries (country) values ('Afghanistan');
 INSERT INTO countries (country) values ('Albania');
 INSERT INTO countries (country) values ('Algeria');
 INSERT INTO countries (country) values ('American Samoa');
@@ -43,7 +43,6 @@ INSERT INTO countries (country) values ('Chile');
 INSERT INTO countries (country) values ('China');
 INSERT INTO countries (country) values ('Colombia');
 INSERT INTO countries (country) values ('Comoros');
-INSERT INTO countries (country) values ('Congo');
 INSERT INTO countries (country) values ('Congo');
 INSERT INTO countries (country) values ('Cook Islands');
 INSERT INTO countries (country) values ('Costa Rica');
